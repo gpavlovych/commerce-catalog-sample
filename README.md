@@ -6,9 +6,9 @@ A reference backend for an e-commerce product catalog and PIM, built on .NET 10 
 [![codecov](https://codecov.io/gh/gpavlovych/commerce-catalog-sample/branch/main/graph/badge.svg)](https://codecov.io/gh/gpavlovych/commerce-catalog-sample)
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live demo](https://img.shields.io/badge/demo-live-39C5CF)](https://YOUR-APP.azurecontainerapps.io)
+[![Live demo](https://img.shields.io/badge/demo-live-39C5CF)](https://gpavlovych.github.io/commerce-catalog-sample/)
 
-> Live demo: https://YOUR-APP.azurecontainerapps.io (replace with your deployed URL). The page is the operations console; the API reference is at `/scalar`.
+> Live console (GitHub Pages): https://gpavlovych.github.io/commerce-catalog-sample/ — Pages hosts the static console only, so set the API base box (top right) to a deployed API to make it load data. For a single-origin demo that also serves the API and the `/scalar` reference, deploy the container to Azure Container Apps or Render (see [docs/deployment.md](docs/deployment.md)).
 
 ## Why this exists
 
