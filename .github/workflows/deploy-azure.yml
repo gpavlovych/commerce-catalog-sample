@@ -51,6 +51,9 @@ jobs:
 
   deploy:
     needs: build-push
+    # Skipped (not failed) until Azure is configured: set the AZURE_CONTAINERAPP_NAME repository
+    # variable plus the AZURE_* secrets (see docs/deployment.md) and this job rolls out the image.
+    if: ${{ vars.AZURE_CONTAINERAPP_NAME != '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Azure login (OIDC)
