@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "ServiceBus": "<service-bus-connection-string-or-namespace>",
+    "AzureSignalRConnectionString": "<azure-signalr-connection-string>",
+    "Messaging:Provider": "ServiceBus",
+    "Messaging:Topic": "catalog-events",
+    "Database:Provider": "SqlServer",
+    "ConnectionStrings:Commerce": "<azure-sql-connection-string>",
+    "Cache:Provider": "Redis",
+    "ConnectionStrings:Redis": "<redis-connection-string>"
+  }
+}

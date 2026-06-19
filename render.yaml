@@ -1,0 +1,22 @@
+# Optional free public deploy (no Azure cost). Runs the demo image in SQLite mode so reviewers get a live URL.
+# The production target is Azure (see .github/workflows/deploy-azure.yml and infra/main.bicep).
+services:
+  - type: web
+    name: commerce-catalog-demo
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: ASPNETCORE_URLS
+        value: "http://+:8080"
+      - key: Database__Provider
+        value: "Sqlite"
+      - key: ConnectionStrings__Commerce
+        value: "Data Source=/app/App_Data/commerce-demo.db"
+      - key: Cache__Provider
+        value: "InMemory"
+      - key: Messaging__Provider
+        value: "InProcess"

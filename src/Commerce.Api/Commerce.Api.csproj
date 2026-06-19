@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Commerce.Application\Commerce.Application.csproj" />
+    <ProjectReference Include="..\Commerce.Infrastructure\Commerce.Infrastructure.csproj" />
+  </ItemGroup>
+  <!-- The demo console lives in /frontend (also published to GitHub Pages). Copy it into wwwroot so the
+       API serves the UI and the API from one origin, which keeps the live demo and UI tests simple. -->
+  <ItemGroup>
+    <Content Include="..\..\frontend\**\*" LinkBase="wwwroot" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

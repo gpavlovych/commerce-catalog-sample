@@ -1,0 +1,35 @@
+name: Deploy console to GitHub Pages
+
+# Publishes the static demo console to GitHub Pages. The page defaults to a same-origin API; when hosted
+# on Pages, set the API base (top-right box) to your deployed API URL. The primary live demo is the Azure
+# Container App, which serves the UI and API from one origin.
+
+on:
+  push:
+    branches: [main]
+    paths: ["frontend/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./frontend
+      - id: deployment
+        uses: actions/deploy-pages@v4

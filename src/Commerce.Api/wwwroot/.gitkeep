@@ -1,0 +1,3 @@
+# Keeps the project wwwroot present. The demo console is linked in from /frontend at build
+# time (see Commerce.Api.csproj); this folder just needs to exist for the static web assets
+# loader during local `dotnet run` (Development).

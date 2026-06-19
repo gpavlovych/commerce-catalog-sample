@@ -1,0 +1,33 @@
+# Runs the full stack the production code targets: the API against SQL Server and Redis Stack
+# (Redis Stack provides the RediSearch module). For a zero-dependency demo, "docker run" the image
+# directly instead; this compose file is for exercising the real data and search paths locally.
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Your_strong_Pass123"
+    ports:
+      - "1433:1433"
+
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    depends_on:
+      - sql
+      - redis
+    environment:
+      ASPNETCORE_URLS: "http://+:8080"
+      ASPNETCORE_ENVIRONMENT: "Production"
+      Database__Provider: "SqlServer"
+      # Demo uses the master database for simplicity. Production uses a dedicated database created by IaC.
+      ConnectionStrings__Commerce: "Server=sql;Database=master;User Id=sa;Password=Your_strong_Pass123;TrustServerCertificate=True"
+      Cache__Provider: "Redis"
+      ConnectionStrings__Redis: "redis:6379,abortConnect=false"
+      Messaging__Provider: "InProcess"
+    ports:
+      - "5080:8080"

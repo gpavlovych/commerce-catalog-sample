@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Commerce Catalog Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">commerce<span class="dot">.</span>catalog</span>
+    <span class="eyebrow">product catalog / PIM console</span>
+    <span class="spacer"></span>
+    <input id="apiBase" class="api-base" aria-label="API base URL" placeholder="API base (same origin)" />
+    <span id="status" class="status"><span class="led"></span><span id="statusText">connecting</span></span>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-label="Catalog">
+      <header>
+        <h2>Catalog</h2>
+        <span class="eyebrow" id="count">0 products</span>
+      </header>
+      <table>
+        <thead>
+          <tr><th>SKU</th><th>Name</th><th>Price</th><th>Reprice</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <aside style="display:grid; gap:18px; align-content:start;">
+      <section class="panel" aria-label="Add product">
+        <header><h2>Add product</h2></header>
+        <div class="form">
+          <div class="field"><label for="sku">SKU</label><input id="sku" class="mono" placeholder="AL-6061-PLATE" /></div>
+          <div class="field"><label for="name">Name</label><input id="name" placeholder="Aluminium 6061 Plate" /></div>
+          <div class="field"><label for="price">Price (EUR)</label><input id="price" class="mono" type="number" step="0.01" min="0" placeholder="42.50" /></div>
+          <div class="field"><label for="supplierId">Supplier ID</label><input id="supplierId" class="mono" value="0192b4d0-0000-7000-8000-0000000000a1" /></div>
+          <button id="add" class="btn btn-primary">Add product</button>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Live price changes">
+        <header>
+          <h2>Live price feed</h2>
+          <span class="eyebrow">SignalR</span>
+        </header>
+        <div id="feed" class="feed"><div class="empty">No price changes yet. Reprice a product to see it stream in.</div></div>
+      </section>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.7/dist/browser/signalr.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
